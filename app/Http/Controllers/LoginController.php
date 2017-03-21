@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /**
@@ -15,8 +18,22 @@ class LoginController extends Controller
     }
 
     //
-    public function login() {
-        $login_status = array('success' => true, 'message' => 'success');
+    public function login(Request $request) {
+        $file = new Filesystem();
+        $loginUser = $request->input('loginUser');
+        $loginPass = $request->input('loginPass');
+
+        // 获取存储的帐号信息
+        $login_status = array('success' => false, 'message' => '');
+        $contents = $file->get('../config/users.json');
+        $users_list = json_decode($contents);
+        foreach ($users_list as $key => $value) {
+            if($key === $loginUser && md5($loginPass) === $value->password) {
+                $login_status = array('success' => true, 'message' => 'success');
+                return json_encode($login_status);
+            }
+        }
+        $login_status = array('success' => false, 'message' => '帐号或密码错误');
         return json_encode($login_status);
     }
 }
