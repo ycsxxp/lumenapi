@@ -1,2 +1,2 @@
-安装依赖
-composer install
+# 安装依赖
+- composer install

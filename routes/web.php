@@ -24,5 +24,7 @@ $app->post('logout', 'LoginController@logout');
 $app->get('getUsers', 'UserController@userList');
 // insert
 $app->post('insertAccount', 'UserController@userInsert');
+// update
+$app->post('updateAccount', 'UserController@userUpdate');
 // delete
 $app->post('deleteAccount', 'UserController@userDelete');

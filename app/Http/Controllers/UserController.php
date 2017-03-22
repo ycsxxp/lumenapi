@@ -25,7 +25,8 @@ class UserController extends Controller
     }
 
     // insert
-    public function userInsert(Request $request) {
+    public function userInsert(Request $request)
+    {
         $name = $request->input('name');
         $age = $request->input('age');
         $address = $request->input('address');
@@ -35,13 +36,27 @@ class UserController extends Controller
         }
         return json_encode(array('success' => false, 'message' => 'fail'));
     }
+    // update
+    public function userUpdate(Request $request) 
+    {
+        # code...
+        $user_id = $request->input('id');
+        $name = $request->input('name');
+        $age = $request->input('age');
+        $address = $request->input('address');
 
+        $result = app('db')->table('users')->where('id', $user_id)->update(['name' => $name, 'age' => $age, 'address' => $address]);
+        if($result) {
+            return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getUserList()));
+        }
+        return json_encode(array('success' => false, 'message' => 'fail'));
+    }
     // delete
-    public function userDelete(Request $request) {
+    public function userDelete(Request $request)
+    {
         # code...
         $user_id = $request->input('id');
         $result = app('db')->table('users')->where('id', '=', $user_id)->delete();
-        // $result = app('db')->delete('DELETE FROM users WHERE id=?', [$user_id]);
         if($result) {
             return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getUserList()));
         }
