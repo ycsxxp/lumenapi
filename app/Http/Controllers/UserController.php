@@ -29,9 +29,20 @@ class UserController extends Controller
         $name = $request->input('name');
         $age = $request->input('age');
         $address = $request->input('address');
-        $result = app('db')->insert('INSERT INTO users (name, age, address) VALUES (?, ?, ?)',[$name, $age, $address]);
+        $result = app('db')->insert('INSERT INTO users (name, age, address) VALUES (?, ?, ?)', [$name, $age, $address]);
         if($result) {
-            $user_list = app('db')->select("SELECT * FROM users ORDER BY id DESC");
+            return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getUserList()));
+        }
+        return json_encode(array('success' => false, 'message' => 'fail'));
+    }
+
+    // delete
+    public function userDelete(Request $request) {
+        # code...
+        $user_id = $request->input('id');
+        $result = app('db')->table('users')->where('id', '=', $user_id)->delete();
+        // $result = app('db')->delete('DELETE FROM users WHERE id=?', [$user_id]);
+        if($result) {
             return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getUserList()));
         }
         return json_encode(array('success' => false, 'message' => 'fail'));

@@ -22,5 +22,7 @@ $app->post('logout', 'LoginController@logout');
 // ===系统===
 // 帐号管理
 $app->get('getUsers', 'UserController@userList');
-
+// insert
 $app->post('insertAccount', 'UserController@userInsert');
+// delete
+$app->post('deleteAccount', 'UserController@userDelete');
