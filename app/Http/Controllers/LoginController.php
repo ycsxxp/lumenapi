@@ -36,4 +36,9 @@ class LoginController extends Controller
         $login_status = array('success' => false, 'message' => '帐号或密码错误');
         return json_encode($login_status);
     }
+
+    public function logout(Request $request) {
+        $login_status = array('success' => true, 'message' => 'success');
+        return json_encode($login_status);
+    }
 }

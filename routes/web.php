@@ -17,4 +17,10 @@ $app->get('/', function () use ($app) {
 
 $app->post('login', 'LoginController@login');
 
+$app->post('logout', 'LoginController@logout');
+
+// ===系统===
+// 帐号管理
 $app->get('getUsers', 'UserController@userList');
+
+$app->post('insertAccount', 'UserController@userInsert');
