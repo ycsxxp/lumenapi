@@ -28,3 +28,9 @@ $app->post('insertAccount', 'UserController@userInsert');
 $app->post('updateAccount', 'UserController@userUpdate');
 // delete
 $app->post('deleteAccount', 'UserController@userDelete');
+
+// ===对象===
+// 网络 子网
+$app->get('subnetList', 'ObjectController@subnetList');
+// create
+$app->post('createSubnet', 'ObjectController@createSubnet');
