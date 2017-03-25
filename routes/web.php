@@ -34,3 +34,7 @@ $app->post('deleteAccount', 'UserController@userDelete');
 $app->get('subnetList', 'ObjectController@subnetList');
 // create
 $app->post('createSubnet', 'ObjectController@createSubnet');
+// update
+$app->post('updateSubnet', 'ObjectController@updateSubnet');
+// delete
+$app->post('deleteSubnet', 'ObjectController@deleteSubnet');

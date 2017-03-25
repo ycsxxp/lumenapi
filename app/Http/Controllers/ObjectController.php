@@ -32,38 +32,50 @@ class ObjectController extends Controller
         $type = 'subnet';
 
         $name = $request->input('name');
-        $age = '192.168.1.1';
-        $address = $request->input('address');
-        $result = app('db')->insert('INSERT INTO object (name, ip, network, type) VALUES (?, ?, ?, ?)', [$name, $age, $address, $type]);
+        $ip = $request->input('ip');
+        $network = $request->input('network');
+        $result = app('db')->insert('INSERT INTO object (name, ip, network, type) VALUES (?, ?, ?, ?)', [$name, $ip, $network, $type]);
         if($result) {
             return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getSubnetList()));
         }
         return json_encode(array('success' => false, 'message' => 'fail'));
     }
     // update
-    // public function userUpdate(Request $request) 
-    // {
-    //     # code...
-    //     $user_id = $request->input('id');
-    //     $name = $request->input('name');
-    //     $age = $request->input('age');
-    //     $address = $request->input('address');
+    public function updateSubnet(Request $request) 
+    {
+        # code...
+        $subnet_id = $request->input('id');
+        $name = $request->input('name');
+        $ip = $request->input('ip');
+        $network = $request->input('network');
 
-    //     $result = app('db')->table('users')->where('id', $user_id)->update(['name' => $name, 'age' => $age, 'address' => $address]);
-    //     if($result) {
-    //         return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getUserList()));
-    //     }
-    //     return json_encode(array('success' => false, 'message' => 'fail'));
-    // }
+        $result = app('db')
+            ->table('object')
+            ->where([
+                ['id', $subnet_id],
+                ['type', 'subnet'],
+            ])
+            ->update(['name' => $name, 'ip' => $ip, 'network' => $network]);
+        if($result) {
+            return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getSubnetList()));
+        }
+        return json_encode(array('success' => false, 'message' => 'fail'));
+    }
     // // delete
-    // public function userDelete(Request $request)
-    // {
-    //     # code...
-    //     $user_id = $request->input('id');
-    //     $result = app('db')->table('users')->where('id', '=', $user_id)->delete();
-    //     if($result) {
-    //         return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getUserList()));
-    //     }
-    //     return json_encode(array('success' => false, 'message' => 'fail'));
-    // }
+    public function deleteSubnet(Request $request)
+    {
+        # code...
+        $subnet_id = $request->input('id');
+        $result = app('db')
+            ->table('object')
+            ->where([
+                ['id', $subnet_id],
+                ['type', 'subnet']
+            ])
+            ->delete();
+        if($result) {
+            return json_encode(array('success' => true, 'message' => 'success', 'data' => $this->getSubnetList()));
+        }
+        return json_encode(array('success' => false, 'message' => 'fail'));
+    }
 }
