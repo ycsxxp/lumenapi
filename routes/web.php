@@ -15,26 +15,26 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-$app->post('login', 'LoginController@login');
+// $app->post('login', 'LoginController@login');
 
-$app->post('logout', 'LoginController@logout');
+// $app->post('logout', 'LoginController@logout');
 
-// ===系统===
-// 帐号管理
-$app->get('getUsers', 'UserController@userList');
-// insert
-$app->post('insertAccount', 'UserController@userInsert');
-// update
-$app->post('updateAccount', 'UserController@userUpdate');
-// delete
-$app->post('deleteAccount', 'UserController@userDelete');
+// // ===系统===
+// // 帐号管理
+// $app->get('getUsers', 'UserController@userList');
+// // insert
+// $app->post('insertAccount', 'UserController@userInsert');
+// // update
+// $app->post('updateAccount', 'UserController@userUpdate');
+// // delete
+// $app->post('deleteAccount', 'UserController@userDelete');
 
-// ===对象===
-// 网络 子网
-$app->get('subnetList', 'ObjectController@subnetList');
-// create
-$app->post('createSubnet', 'ObjectController@createSubnet');
-// update
-$app->post('updateSubnet', 'ObjectController@updateSubnet');
-// delete
-$app->post('deleteSubnet', 'ObjectController@deleteSubnet');
+// // ===对象===
+// // 网络 子网
+// $app->get('subnetList', 'ObjectController@subnetList');
+// // create
+// $app->post('createSubnet', 'ObjectController@createSubnet');
+// // update
+// $app->post('updateSubnet', 'ObjectController@updateSubnet');
+// // delete
+// $app->post('deleteSubnet', 'ObjectController@deleteSubnet');

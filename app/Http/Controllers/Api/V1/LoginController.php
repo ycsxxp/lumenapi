@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -30,11 +31,11 @@ class LoginController extends Controller
         foreach ($users_list as $key => $value) {
             if($key === $loginUser && md5($loginPass) === $value->password) {
                 $login_status = array('success' => true, 'message' => 'success');
-                return json_encode($login_status);
+                return response()->json($login_status);
             }
         }
         $login_status = array('success' => false, 'message' => '帐号或密码错误');
-        return json_encode($login_status);
+        return response()->json($login_status);
     }
 
     public function logout(Request $request) {

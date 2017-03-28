@@ -85,7 +85,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // dingo/api
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 //jwt
-$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register('Tymon\JWTAuth\Providers\JWTAuthServiceProvider');
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
