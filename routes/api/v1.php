@@ -147,6 +147,12 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers\Api\V1'], function ($a
     $api->get('/', function() use ($api){
         return "a";
     });
+    // login认证
+    $api->post('authorizations', [
+        'as' => 'authorizations.store',
+        'uses' => 'AuthController@store',
+    ]);
+
     $api->get('users', [
         'as' => 'user.index',
         'uses' => 'UserController@index'
