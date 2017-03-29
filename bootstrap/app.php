@@ -25,7 +25,7 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +66,9 @@ $app->singleton(
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
-
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class
+]);
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -85,7 +87,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 // dingo/api
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 //jwt
-$app->register('Tymon\JWTAuth\Providers\JWTAuthServiceProvider');
+$app->register(Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -98,6 +100,7 @@ $app->register('Tymon\JWTAuth\Providers\JWTAuthServiceProvider');
 */
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
+		require __DIR__.'/../routes/api/v1.php';
     require __DIR__.'/../routes/web.php';
 });
 

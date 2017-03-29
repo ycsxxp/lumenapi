@@ -144,8 +144,11 @@ $api = app('Dingo\Api\Routing\Router');
 //     });
 // });
 $api->version('v1', ['namespace' => 'App\Http\Controllers\Api\V1'], function ($api) {
+    $api->get('/', function() use ($api){
+        return "a";
+    });
     $api->get('users', [
         'as' => 'user.index',
-        'users' => 'UserController@index'
+        'uses' => 'UserController@index'
     ]);
 });
