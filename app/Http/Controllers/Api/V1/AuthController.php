@@ -20,7 +20,7 @@ class AuthController extends BaseController
     public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'email' => 'required|email',
+            'name' => 'required',
             'password' => 'required',
         ]);
 
@@ -28,7 +28,7 @@ class AuthController extends BaseController
             return $this->errorBadRequest($validator);
         }
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
 
         // 验证失败返回403
         if (! $token = \Auth::attempt($credentials)) {
